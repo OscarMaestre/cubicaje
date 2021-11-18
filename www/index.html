@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+	<title> jQuery Mobile Boilerplate </title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+
+	<!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons -->
+	<!-- For iPhone 4 with high-resolution Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon.png">
+	<!-- For first-generation iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon.png">
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+	<!-- For nokia devices and desktop browsers : -->
+	<link rel="shortcut icon" href="favicon.ico" />
+
+	<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+	<meta http-equiv="cleartype" content="on">
+
+	<!-- jQuery Mobile CSS bits -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css" />
+
+	<!-- Custom css -->
+	<link rel="stylesheet" href="css/custom.css" />
+
+	<!-- Javascript includes -->
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/mobileinit.js"></script>
+	<script src="js/ios-orientationchange-fix.min.js"></script>
+	<script src="js/jquery.mobile-1.4.0.js"></script>
+	<script src="js/application.js"></script>
+	<script src="js/binpacking/js/packer.js"></script>
+	<script src="js/binpacking/js/packer.growing.js"></script>
+	<script src="js/programa.js"></script>
+	<!-- Startup Images for iDevices -->
+	<script>(function(){var a;if(navigator.platform==="iPad"){a=window.orientation!==90||window.orientation===-90?"images/startup-tablet-landscape.png":"images/startup-tablet-portrait.png"}else{a=window.devicePixelRatio===2?"images/startup-retina.png":"images/startup.png"}document.write('<link rel="apple-touch-startup-image" href="'+a+'"/>')})()</script>
+	<!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
+	<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+</head>
+<body>
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Cubicaje</h1>
+		</div>
+
+		<div data-role="content">
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<label for="largo_camion">Largo camion:</label>
+					<input name="largo_camion"
+						   data-highlight="true"
+						   id="largo_camion" min="0" max="12000"
+						   value="4000" step="10" type="range">
+				</div>
+				<div class="ui-block-b">
+					<label for="ancho_camion">Ancho camion:</label>
+					<input name="ancho_camion" data-highlight="true"
+						id="ancho_camion" min="0" max="3000" value="1000" step="10" type="range">
+				</div>
+				<div class="ui-block-c">
+					<label for="alto_camion">Alto camion:</label>
+					<input name="alto_camion" id="alto_camion"
+						   data-highlight="true"
+						   min="0" max="6000" value="2600" step="10" type="range">
+				</div>
+				<div class="ui-block-a">
+					<label for="largo_pale">Largo palé:</label>
+					<input name="largo_pale"
+						   data-highlight="true"
+						   id="largo_pale" min="0" max="1200"
+						   value="1200" step="10" type="range">
+				</div>
+				<div class="ui-block-b">
+					<label for="ancho_pale">Ancho palé:</label>
+					<input name="ancho_pale" data-highlight="true"
+						id="ancho_pale" min="0" max="1200" value="1000" step="10" type="range">
+				</div>
+				<div class="ui-block-c">
+					<label for="alto_pale">Alto palé:</label>
+					<input name="alto_pale" id="alto_pale"
+						   data-highlight="true"
+						   min="0" max="100" value="15" step="10" type="range">
+				</div>
+				<div class="ui-block-a">
+
+					<label for="largo_caja">Largo caja:</label>
+					<input name="largo_caja" id="largo_caja"
+						   data-highlight="true"
+						   min="0" max="1200" value="285"  type="range">
+				</div>
+				<div class="ui-block-b">
+					<label for="ancho_caja">Ancho caja:</label>
+					<input name="ancho_caja" id="ancho_caja"
+						   data-highlight="true"
+						   min="0" max="1200" value="210"  type="range">
+				</div>
+				<div class="ui-block-c">
+					<label for="alto_caja">Alto caja:</label>
+					<input name="alto_caja" id="alto_caja"
+						   data-highlight="true"
+						   min="0" max="1000" value="320"  type="range">
+				</div>
+			</div>
+			<div id="informe">
+				
+			</div>
+			<br/>
+			<div id="el_canvas" style="margin-left: auto">
+				<canvas id="lienzo" width="600px" height="600px"></canvas>
+			</div>
+		</div>
+
+		<div data-role="footer">
+			<p>Oscar & Ana ;) </p>
+		</div>
+
+	</div>
+</body>
+</html>
