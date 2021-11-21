@@ -1,7 +1,7 @@
 
 from random import choice, randint, shuffle
 from dataclasses import dataclass
-
+from math import trunc
 
 CIUDADES=[
     "Moscú", "Nueva York", "Boston", "Ciudad del Cabo", "Manila",
@@ -58,20 +58,42 @@ class Solver(object):
         
     def get_solucion(self):
         #print(self.medida.ancho)
-        self.ratio1=round(self.palet.ancho / self.medida.ancho, NUM_DECIMALES)
-        self.ratio2=round(self.palet.ancho / self.medida.alto, NUM_DECIMALES)
+        self.ratio1=int(trunc(self.palet.ancho / self.medida.ancho))
+        self.ratio2=int(trunc(self.palet.ancho / self.medida.alto))
 
-        self.ratio3=round(self.palet.alto / self.medida.ancho, NUM_DECIMALES)
-        self.ratio4=round(self.palet.alto / self.medida.alto, NUM_DECIMALES)
+        self.ratio3=int(trunc(self.palet.alto / self.medida.alto))
+        self.ratio4=int(trunc(self.palet.alto / self.medida.ancho))
+        
+        (self.filas_a, self.columnas_a)=(self.ratio1,self.ratio3)
+        (self.filas_b, self.columnas_b)=(self.ratio2,self.ratio4)
+
+        self.total_a=self.filas_a * self.columnas_a
+        self.total_b=self.filas_b * self.columnas_b
+
+        if self.total_a > self.total_b:
+            self.num_total = self.total_a
+            return (self.total_a, self.filas_a, self.columnas_a)
+        else:
+            self.num_total = self.total_b
+            return (self.total_b, self.filas_b, self.columnas_b)
+
+        
 
     def get_texto_ratios(self):
-        txt_ratio1=f'{self.palet.ancho} / {self.medida.ancho} = {self.ratio1}'
-        txt_ratio2=f'{self.palet.ancho} / {self.medida.alto} = {self.ratio2}'
+        txt_ratio1=f'A) {self.palet.ancho} / {self.medida.ancho} = {self.ratio1}'
+        txt_ratio2=f'B) {self.palet.ancho} / {self.medida.alto} = {self.ratio2}'
 
-        txt_ratio3=f'{self.palet.alto} / {self.medida.ancho} = {self.ratio3}'
-        txt_ratio4=f'{self.palet.alto} / {self.medida.alto} = {self.ratio4}'
+        txt_ratio3=f'A) {self.palet.alto} / {self.medida.ancho} = {self.ratio3}'
+        txt_ratio4=f'B) {self.palet.alto} / {self.medida.alto} = {self.ratio4}'
+
 
         return [txt_ratio1, txt_ratio2, txt_ratio3, txt_ratio4]
+
+    def get_texto_casos(self):
+        txt_caso_a=f'En A) tenemos {self.filas_a} x {self.columnas_a} = {self.total_a}'
+        txt_caso_b=f'En A) tenemos {self.filas_b} x {self.columnas_b} = {self.total_b}'
+
+        return [txt_caso_a, txt_caso_b]
 
 @dataclass
 class Medida(object):
@@ -143,11 +165,11 @@ class ConstructorEnunciado(object):
     
 if __name__=="__main__":
     
-    for i in range(0, 10):
+    for i in range(0, 2):
         m=Medida()
         p=Palet.get_palet()
         #print(m)
         #print(m.ordenar())
         c=ConstructorEnunciado()
-        #print(c)
+        print(c)
         print (c.resolver())
